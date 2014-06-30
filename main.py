@@ -40,24 +40,25 @@ def run(bn):
             if result[0]:
                 # hit
                 board[y][x] = 'h'
-# begin a series of reasoning
-# generate a list of possible ship configurations, which are just tuples of underlying positions (y, x)
+                # begin a series of reasoning
+                # generate a list of possible ship configurations, which are just tuples of underlying positions (y, x)
                 tmplist = []
-# horizontal ones
+                # horizontal ones
                 tmplist.extend([(y, xx) for xx in range(x - 1, x + 1)])
                 tmplist.extend([(y, xx) for xx in range(x - 2, x + 2)])
                 tmplist.extend([(y, xx) for xx in range(x - 3, x + 3)])
                 tmplist.extend([(y, xx) for xx in range(x - 4, x + 4)])
-# vertical ones
+                # vertical ones
                 tmplist.extend([(yy, x) for yy in range(y - 1, y + 1)])
                 tmplist.extend([(yy, x) for yy in range(y - 2, y + 2)])
                 tmplist.extend([(yy, x) for yy in range(y - 3, y + 3)])
                 tmplist.extend([(yy, x) for yy in range(y - 4, y + 4)])
-# remove impossible ones
+                # remove impossible ones
                 for tmp in tmplist:
-                    if (tmp[0] < 0 or tmp[0] >= 10 or tmp[1] < 0 or tmp[1] >= 10):
+                    if ((tmp[0] < 0) or (tmp[0] >= 10) or (tmp[1] < 0) or (tmp[1] >= 10)):
+                        print '[remove]'
                         tmplist.remove(tmp)
-# get a histogram
+                # get a histogram
                 print 'tmplist = ', tmplist
                 hist = [0 for i in range(100)]
                 for tmp in tmplist:
@@ -83,7 +84,7 @@ def run(bn):
             break
 
 
-# bns = ['test_board_1' , 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
+# bns = ['live_board_1' , 'live_board_2' , 'live_board_3' , 'live_board_4' , 'live_board_5']
 bns = ['test_board_2']
 for bn in bns:
     run(bn)
