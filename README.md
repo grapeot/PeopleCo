@@ -6,7 +6,7 @@ The `master` brunch holds the latest code I have. The algorithm is illustrated a
 
 ## Dependencies
 
-* Requests for HTTP manipulation
+* `requests` for HTTP manipulation
 
 ## References
 
