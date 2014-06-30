@@ -35,7 +35,22 @@ def run(bn):
                 # hit
                 board[y][x] = 'h'
 # begin a series of reasoning
-# generate a list of possible ship configurations
+# generate a list of possible ship configurations, which are just tuples of underlying positions (y, x)
+                tmplist = []
+# horizontal ones
+                tmplist.extend([(y, xx) for xx in range(x - 1, x + 1)])
+                tmplist.extend([(y, xx) for xx in range(x - 2, x + 2)])
+                tmplist.extend([(y, xx) for xx in range(x - 3, x + 3)])
+                tmplist.extend([(y, xx) for xx in range(x - 4, x + 4)])
+# vertical ones
+                tmplist.extend([(yy, x) for yy in range(y - 1, y + 1)])
+                tmplist.extend([(yy, x) for yy in range(y - 2, y + 2)])
+                tmplist.extend([(yy, x) for yy in range(y - 3, y + 3)])
+                tmplist.extend([(yy, x) for yy in range(y - 4, y + 4)])
+# remove impossible ones
+                for tmp in tmplist:
+                    if (tmp[0] < 0 or tmp[0] >= 10 or tmp[1] < 0 or tmp[1] >= 10):
+                        tmplist.remove(tmp)
 # get a histogram
 # shoot on the most likely position in the histogram
             else:
