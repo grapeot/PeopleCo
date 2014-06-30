@@ -19,7 +19,7 @@ def isFinished(bn):
     return re.search('"is_finished": true', content) is not None
 
 token = 'ea2985aa5625'
-letters = [chr(x) for x in range(ord('A'), ord('Z') + 1)]
+letters = [chr(x) for x in range(ord('A'), ord('J') + 1)]
 numbers = range(1, 10 + 1)
 
 # bns = ['test_board_1' , 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
@@ -32,7 +32,7 @@ for bn in bns:
             result = shot(bn, '{0}{1}'.format(l, n)) 
             print l, n, result
             if result[1]:
-                isending;
+                isending = True
                 break
         if (isending):
             break
