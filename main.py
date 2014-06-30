@@ -25,10 +25,16 @@ def run(bn):
     print reset(bn)
     board = [['u' for x in range(10)] for y in range(10)]
     isending = False
+    isBestAvailable = False
     for y in range(10):
         for x in range(10):
-            l = letters[y]
-            n = numbers[x]
+            if isBestAvailable:
+                l = letters[besty]
+                n = numbers[bestx]
+                isBestAvailable = False
+            else:
+                l = letters[y]
+                n = numbers[x]
             result = shot(bn, '{0}{1}'.format(l, n)) 
             print l, n, result
             if result[0]:
@@ -52,7 +58,19 @@ def run(bn):
                     if (tmp[0] < 0 or tmp[0] >= 10 or tmp[1] < 0 or tmp[1] >= 10):
                         tmplist.remove(tmp)
 # get a histogram
-# shoot on the most likely position in the histogram
+                print 'tmplist = ', tmplist
+                hist = [0 for i in range(100)]
+                for tmp in tmplist:
+                    hist[tmp[0] * 10 + tmp[1]] = hist[tmp[0] * 10 + tmp[1]] + 1
+                print 'hist = ', hist
+                # shoot on the most likely position in the histogram
+                maxi = 0
+                for i in range(100):
+                    if (hist[i] > hist[maxi]):
+                        maxi = i
+                bestx = maxi % 10
+                besty = (maxi - bestx) / 10
+                isBestAvailable = True;
             else:
                 # not hit (empty)
                 board[y][x] = 'e'
