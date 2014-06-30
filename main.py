@@ -83,7 +83,6 @@ def run(bn):
         if (isending):
             break
 
-
 # bns = ['live_board_1' , 'live_board_2' , 'live_board_3' , 'live_board_4' , 'live_board_5']
 bns = ['test_board_2']
 for bn in bns:
