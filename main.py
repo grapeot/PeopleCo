@@ -22,12 +22,17 @@ token = 'ea2985aa5625'
 letters = [chr(x) for x in range(ord('A'), ord('Z') + 1)]
 numbers = range(1, 10 + 1)
 
-bns = ['test_board_1' , 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
+# bns = ['test_board_1' , 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
+bns = [ 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
 for bn in bns:
     print reset(bn)
+    isending = False
     for l in letters:
         for n in numbers:
             result = shot(bn, '{0}{1}'.format(l, n)) 
             print l, n, result
             if result[1]:
-                sys.exit(0)
+                isending;
+                break
+        if (isending):
+            break
