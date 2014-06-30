@@ -1,5 +1,8 @@
 import re, sys, requests
 
+token = 'ea2985aa5625'
+letters = [chr(x) for x in range(ord('A'), ord('J') + 1)]
+numbers = range(1, 10 + 1)
 
 # board name, return (isHit, isFinished)
 def shot(bn, pos):
@@ -20,20 +23,28 @@ def isFinished(bn):
 
 def run(bn):
     print reset(bn)
+    board = [['u' for x in range(10)] for y in range(10)]
     isending = False
-    for l in letters:
-        for n in numbers:
+    for y in range(10):
+        for x in range(10):
+            l = letters[y]
+            n = numbers[x]
             result = shot(bn, '{0}{1}'.format(l, n)) 
             print l, n, result
+            if result[0]:
+                # hit
+                board[y][x] = 'h'
+            else:
+                # not hit (empty)
+                board[y][x] = 'e'
+
+            # guard of wasting time if the game is already finished
             if result[1]:
                 isending = True
                 break
         if (isending):
             break
 
-token = 'ea2985aa5625'
-letters = [chr(x) for x in range(ord('A'), ord('J') + 1)]
-numbers = range(1, 10 + 1)
 
 # bns = ['test_board_1' , 'test_board_2' , 'test_board_3' , 'test_board_4' , 'test_board_5']
 bns = ['test_board_2']
