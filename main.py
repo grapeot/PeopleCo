@@ -34,6 +34,10 @@ def run(bn):
             if result[0]:
                 # hit
                 board[y][x] = 'h'
+# begin a series of reasoning
+# generate a list of possible ship configurations
+# get a histogram
+# shoot on the most likely position in the histogram
             else:
                 # not hit (empty)
                 board[y][x] = 'e'
